@@ -1,10 +1,22 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
+import EcCircleProgressBar from "./components/EcCircleProgressBar.vue";
+import HelloWorld from "./components/HelloWorld.vue";
+
+const progress = ref(0.5);
 </script>
 
 <template>
+  <div>
+    <h2>一个丝滑的环形进度条</h2>
+    <EcCircleProgressBar
+      :width="200"
+      :height="200"
+      :r="80"
+      v-model="progress"
+      draggable
+    />
+  </div>
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
