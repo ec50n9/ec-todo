@@ -46,7 +46,6 @@ const emit = defineEmits(["change"]);
 
 const selected = ref(0);
 const position = reactive({ startX: 0, width: 0 });
-const demo = { startX: 50, width: 50 };
 
 function selectTab(index: number) {
   selected.value = index;
