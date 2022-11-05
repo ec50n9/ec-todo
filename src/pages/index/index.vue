@@ -1,24 +1,27 @@
 <template>
-  <RouterView />
-  <div
-    absolute
-    bottom-0
-    w-full
-    p-3
-    transition-all
-    duration-500
-    transform
-    :class="[showTabs ? 'translate-y-0' : 'translate-y-full']"
-  >
-    <EcTabBar
-      :bg-color="themeStore.colors.lightPrimaryColor"
-      :text-color="themeStore.colors.lightText"
-      :selected-bg-color="themeStore.colors.primaryColor"
-      :selected-text-color="themeStore.colors.lightPrimaryText"
-      :tabs="tabs"
-      @change="handleTabChange"
-      rounded-4
-    />
+  <div h-full overflow-auto>
+    <RouterView />
+    <div h-22></div>
+    <div
+      absolute
+      bottom-0
+      w-full
+      p-3
+      transition-all
+      duration-500
+      transform
+      :class="[showTabs ? 'translate-y-0' : 'translate-y-full']"
+    >
+      <EcTabBar
+        :bg-color="themeStore.colors.lightPrimaryColor"
+        :text-color="themeStore.colors.lightText"
+        :selected-bg-color="themeStore.colors.primaryColor"
+        :selected-text-color="themeStore.colors.lightPrimaryText"
+        :tabs="tabs"
+        @change="handleTabChange"
+        rounded-4
+      />
+    </div>
   </div>
 </template>
 
