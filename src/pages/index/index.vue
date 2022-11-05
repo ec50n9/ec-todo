@@ -64,7 +64,7 @@ onMounted(() => (showTabs.value = true));
 let oldScrollTop = 0;
 function handleContainerScroll(event: Event) {
   if (!event.target) return;
-  const curScrollTop = event.target.scrollTop;
+  const curScrollTop = (event.target as Element).scrollTop;
   showTabs.value = curScrollTop < oldScrollTop;
   oldScrollTop = curScrollTop;
 }
