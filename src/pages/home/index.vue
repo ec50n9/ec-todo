@@ -6,6 +6,9 @@
       :height="200"
       :r="80"
       :duration="0.5"
+      :bg-color="themeStore.colors.lightText"
+      :fill-color="themeStore.colors.primaryColor"
+      :handle-color="themeStore.colors.darkPrimaryColor"
       v-model="progress"
       draggable
     />
