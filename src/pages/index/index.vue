@@ -1,19 +1,29 @@
 <template>
   <RouterView />
-  <div absolute bottom-0 w-full p-3>
+  <div
+    absolute
+    bottom-0
+    w-full
+    p-3
+    transition-all
+    duration-500
+    transform
+    :class="[showTabs ? 'translate-y-0' : 'translate-y-full']"
+  >
     <EcTabBar
       :bg-color="themeStore.colors.lightPrimaryColor"
       :text-color="themeStore.colors.lightText"
       :selected-bg-color="themeStore.colors.primaryColor"
       :selected-text-color="themeStore.colors.lightPrimaryText"
-      rounded-4
       :tabs="tabs"
       @change="handleTabChange"
+      rounded-4
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import EcTabBar from "../../components/EcTabBar.vue";
 import { useThemeStore } from "../../store/ThemeStore";
@@ -38,6 +48,10 @@ const tabs = [
 function handleTabChange(index: number) {
   router.replace(tabs[index].path);
 }
+
+// 底部栏显示动画
+const showTabs = ref(false);
+onMounted(() => (showTabs.value = true));
 </script>
 
 <style>
