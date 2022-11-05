@@ -5,6 +5,7 @@
       :width="200"
       :height="200"
       :r="80"
+      :duration="0.5"
       v-model="progress"
       draggable
     />
@@ -15,6 +16,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import EcCircleProgressBar from "../../components/EcCircleProgressBar.vue";
 
 const progress = ref(0.6);
 </script>

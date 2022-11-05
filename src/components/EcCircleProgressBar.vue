@@ -75,6 +75,10 @@ const props = defineProps({
     type: Number,
     default: 50,
   },
+  duration: {
+    type: Number,
+    default: 0.3,
+  },
   bgColor: {
     type: String,
     default: "#EBEDF0",
@@ -131,7 +135,7 @@ function moveTo(value: number) {
 function rateTo(value: number) {
   if (value <= 0) value = 0;
   else if (value > 1) value = 1;
-  gsap.to(rate, { value, duration: 0.3 });
+  gsap.to(rate, { value, duration: props.duration });
 }
 
 // 监听进度值变化
