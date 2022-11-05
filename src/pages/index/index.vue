@@ -3,7 +3,7 @@
   <div absolute bottom-0 w-full p-3>
     <EcTabBar
       :bg-color="themeStore.colors.lightPrimaryColor"
-      :text-color="themeStore.colors.lightSecondaryText"
+      :text-color="themeStore.colors.lightText"
       :selected-bg-color="themeStore.colors.primaryColor"
       :selected-text-color="themeStore.colors.lightPrimaryText"
       rounded-4
