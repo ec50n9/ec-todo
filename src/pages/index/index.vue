@@ -1,27 +1,26 @@
 <template>
-  <div h-full overflow-auto>
+  <div @scroll="handleContainerScroll" h-full overflow-scroll>
     <RouterView />
-    <div h-22></div>
-    <div
-      absolute
-      bottom-0
-      w-full
-      p-3
-      transition-all
-      duration-500
-      transform
-      :class="[showTabs ? 'translate-y-0' : 'translate-y-full']"
-    >
-      <EcTabBar
-        :bg-color="themeStore.colors.lightPrimaryColor"
-        :text-color="themeStore.colors.lightText"
-        :selected-bg-color="themeStore.colors.primaryColor"
-        :selected-text-color="themeStore.colors.lightPrimaryText"
-        :tabs="tabs"
-        @change="handleTabChange"
-        rounded-4
-      />
-    </div>
+  </div>
+  <div
+    absolute
+    bottom-0
+    w-full
+    p-3
+    transition-all
+    duration-500
+    transform
+    :class="[showTabs ? 'translate-y-0' : 'translate-y-full']"
+  >
+    <EcTabBar
+      :bg-color="themeStore.colors.lightPrimaryColor"
+      :text-color="themeStore.colors.lightText"
+      :selected-bg-color="themeStore.colors.primaryColor"
+      :selected-text-color="themeStore.colors.lightPrimaryText"
+      :tabs="tabs"
+      @change="handleTabChange"
+      rounded-4
+    />
   </div>
 </template>
 
@@ -60,6 +59,15 @@ function handleTabChange(index: number) {
 // 底部栏显示动画
 const showTabs = ref(false);
 onMounted(() => (showTabs.value = true));
+
+// 滚动时自动隐藏底部栏
+let oldScrollTop = 0;
+function handleContainerScroll(event: Event) {
+  if (!event.target) return;
+  const curScrollTop = event.target.scrollTop;
+  showTabs.value = curScrollTop < oldScrollTop;
+  oldScrollTop = curScrollTop;
+}
 </script>
 
 <style>
