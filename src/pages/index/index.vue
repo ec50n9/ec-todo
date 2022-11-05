@@ -39,6 +39,11 @@ const tabs = [
     path: "/",
   },
   {
+    icon: "i-carbon-list-checked",
+    text: "待办",
+    path: "/todo",
+  },
+  {
     icon: "i-carbon-person",
     text: "关于",
     path: "/about",
