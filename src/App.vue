@@ -3,7 +3,7 @@ import { ref } from "vue";
 import EcCircleProgressBar from "./components/EcCircleProgressBar.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 
-const progress = ref(0.5);
+const progress = ref(0.6);
 </script>
 
 <template>
@@ -16,6 +16,8 @@ const progress = ref(0.5);
       v-model="progress"
       draggable
     />
+    <p>{{ progress.toFixed(2) }}</p>
+    <input type="number" v-model="progress" />
   </div>
   <div>
     <a href="https://vitejs.dev" target="_blank">

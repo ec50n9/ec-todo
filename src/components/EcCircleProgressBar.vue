@@ -122,23 +122,21 @@ watch(rate, (newRate) => {
 
 // 通知改变值
 function moveTo(value: number) {
-  if (value <= 0 || value - rate.value > 0.25) value = 0.00001;
+  if (value <= 0 || value - rate.value > 0.25) value = 0;
   else if (value > 1 || value - rate.value < -0.25) value = 1;
   emit("update:modelValue", value);
 }
 
 // 改变自身值
 function rateTo(value: number) {
-  if (value <= 0) value = 0.00001;
+  if (value <= 0) value = 0;
   else if (value > 1) value = 1;
   gsap.to(rate, { value, duration: 0.3 });
 }
 
 // 监听进度值变化
 const temp = computed(() => props.modelValue);
-watch(temp, (newValue) => {
-  rateTo(newValue);
-});
+watch(temp, (newValue) => rateTo(newValue));
 
 // 初始化进度条
 onMounted(() => rateTo(props.modelValue));
