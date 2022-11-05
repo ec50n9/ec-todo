@@ -1,6 +1,10 @@
 <template>
   <div @scroll="handleContainerScroll" h-full overflow-scroll>
-    <RouterView />
+    <RouterView v-slot="{ Component, route }">
+      <Transition name="fade" mode="out-in">
+        <Component :is="Component" :key="route.path" />
+      </Transition>
+    </RouterView>
   </div>
   <div
     absolute
@@ -71,19 +75,13 @@ function handleContainerScroll(event: Event) {
 </script>
 
 <style>
-.skipLink {
-  white-space: nowrap;
-  margin: 1em auto;
-  top: 0;
-  position: fixed;
-  left: 50%;
-  margin-left: -72px;
-  opacity: 0;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
-.skipLink:focus {
-  opacity: 1;
-  background-color: white;
-  padding: 0.5em;
-  border: 1px solid black;
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
