@@ -37,7 +37,7 @@ type Props = {
 
 const props = withDefaults(defineProps<Props>(), {
   bgColor: "#A5B4FC",
-  textColor: "#F9FAFB",
+  textColor: "#F3F4F6",
   selectedBgColor: "#6366F1",
   selectedTextColor: "#F9FAFB",
   shadowColor: "rgba(29, 78, 216, 0.2)",
@@ -81,12 +81,11 @@ onMounted(() => selectTab(0));
   transform: translateX(v-bind("position.startX+'px'"));
   width: v-bind("position.width+'px'");
 
-  color: v-bind("$props.selectedTextColor");
   background-color: v-bind("$props.selectedBgColor");
 }
 
 .tab-bar-item {
-  @apply flex items-center gap-2 px-3 py-1;
+  @apply flex items-center gap-2 px-4 py-1;
 }
 
 .tab-bar-item__icon {
@@ -100,6 +99,10 @@ onMounted(() => selectTab(0));
   opacity: 0;
   transform: translateX(-50%);
   transition: all 0.3s ease;
+}
+
+.tab-bar-item--active {
+  color: v-bind("$props.selectedTextColor");
 }
 
 .tab-bar-item--active .tab-bar-item__icon {
