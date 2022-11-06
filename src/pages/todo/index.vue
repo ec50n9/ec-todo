@@ -6,7 +6,7 @@
     />
     <TodoList>
       <TodoItem
-        v-for="todo in todoList"
+        v-for="todo in todoStore.todoList"
         :key="todo.title"
         :title="todo.title"
         :finished="todo.finished"
@@ -17,26 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
 import EcHeader from "../../components/EcHeader.vue";
 import TodoItem from "./todo-item.vue";
 import TodoList from "./todo-list.vue";
+import { useTodoStore } from "../../store/TodoStore";
 
-type Todo = {
-  title: string;
-  date: Date;
-  duration: number;
-  finished: boolean;
-};
-
-const todoList = reactive<Todo[]>([]);
-
-for (let i = 0; i < 100; i++) {
-  todoList.push({
-    title: `这是第${i + 1}条待办`,
-    date: new Date(),
-    duration: 1000,
-    finished: false,
-  });
-}
+const todoStore = useTodoStore();
 </script>
