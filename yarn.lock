@@ -38,6 +38,13 @@
   resolved "https://registry.npmmirror.com/@esbuild/linux-loong64/-/linux-loong64-0.15.13.tgz#64e8825bf0ce769dac94ee39d92ebe6272020dfc"
   integrity sha512-+BoyIm4I8uJmH/QDIH0fu7MG0AEx9OXEDXnqptXCwKOlOqZiS4iraH1Nr7/ObLMokW3sOCeBNyD68ATcV9b9Ag==
 
+"@iconify-json/akar-icons@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.npmmirror.com/@iconify-json/akar-icons/-/akar-icons-1.1.10.tgz#8bc6ed56ee9aedb573c71c988962606d719827d7"
+  integrity sha512-vjzHOYRoEIqgPd84r9H0RMicHa3qvLHHvdcD3sa53RSIeIRQfj3WoOdxaG0PK8NxsE1pahNrzhGmiF7XqnmZvA==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify-json/carbon@^1.1.9":
   version "1.1.9"
   resolved "https://registry.npmmirror.com/@iconify-json/carbon/-/carbon-1.1.9.tgz#a3b2225fd935347f384234877dae4878d2e7112d"

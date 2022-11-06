@@ -33,12 +33,13 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import EcTabBar from "../../components/EcTabBar.vue";
 import { useThemeStore } from "../../store/ThemeStore";
+import { TabItem } from "../../components/EcTabBar.vue";
 
 const themeStore = useThemeStore();
 
 // 底部栏
 const router = useRouter();
-const tabs = [
+const tabs: TabItem[] = [
   {
     icon: "i-carbon-home",
     text: "首页",
@@ -48,6 +49,11 @@ const tabs = [
     icon: "i-carbon-list-checked",
     text: "待办",
     path: "/todo",
+    selectedIcon: "i-akar-icons:plus",
+    selectedText: "添加",
+    selectedFunc: () => {
+      console.log("hello, world");
+    },
   },
   {
     icon: "i-carbon-person",

@@ -8,10 +8,23 @@
         'tab-bar-item',
         selected === index ? 'tab-bar-item--active' : '',
       ]"
-      @click="selectTab(index)"
+      @click="
+        () => {
+          selected === index
+            ? tab.selectedFunc && tab.selectedFunc()
+            : selectTab(index);
+        }
+      "
     >
-      <div :class="['tab-bar-item__icon', tab.icon]" />
-      <div class="tab-bar-item__text">{{ tab.text }}</div>
+      <div
+        :class="[
+          'tab-bar-item__icon',
+          selected === index ? tab.selectedIcon || tab.icon : tab.icon,
+        ]"
+      />
+      <div class="tab-bar-item__text">
+        {{ selected === index ? tab.selectedText || tab.text : tab.text }}
+      </div>
     </li>
   </ul>
 </template>
@@ -20,10 +33,13 @@
 import { onMounted, reactive, ref } from "vue";
 import gsap from "gsap";
 
-type TabItem = {
+export type TabItem = {
   icon: string;
   text: string;
   path: string;
+  selectedIcon?: string;
+  selectedText?: string;
+  selectedFunc?: () => void;
 };
 
 type Props = {

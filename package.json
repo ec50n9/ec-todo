@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-json/akar-icons": "^1.1.10",
     "@iconify-json/carbon": "^1.1.9",
     "gsap": "^3.11.3",
     "pinia": "^2.0.23",
