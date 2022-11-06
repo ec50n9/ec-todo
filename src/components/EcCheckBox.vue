@@ -1,5 +1,6 @@
 <template>
   <svg
+    @click="handleClick"
     viewBox="0 0 300 300"
     width="30"
     height="30"
@@ -12,7 +13,7 @@
       transform="matrix(-1.153139 0 0-1.153139 150 150)"
       fill="none"
       stroke="#3f5787"
-      stroke-width="20"
+      stroke-width="25"
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-dasharray="706.07"
@@ -28,20 +29,6 @@
       stroke-linejoin="round"
       stroke-dasharray="286.12829"
       :stroke-dashoffset="params.pathOffset"
-    />
-  </svg>
-
-  <svg @click="handleClick" viewBox="0 0 300 300" width="30" height="30">
-    <path
-      :class="['hook', checked ? 'hook--checked' : '']"
-      d="M63.521468,138.157895q35.31856,70.117728,64.923823,70.117728t108.03324-138.157894"
-      transform="matrix(1.435016 0 0 1.435026-65.252399-49.750849)"
-      fill="none"
-      stroke="#3f5787"
-      stroke-width="20"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-dasharray="300"
     />
   </svg>
 </template>
@@ -65,22 +52,14 @@ const params = reactive({
   pathOffset: 286.12829,
 });
 const _checked = computed(() => props.checked);
-let tl: gsap.core.Timeline | null = null;
+let tl = gsap
+  .timeline({ defaults: { duration: 0.3 } })
+  .to(params, { circleOffset: 706.07 })
+  .to(params, { pathOffset: 0 })
+  .pause();
 watch(_checked, (newValue) => {
-  console.log(newValue);
-  if (newValue) {
-    tl?.clear();
-    tl = gsap
-      .timeline({ defaults: { duration: 0.3 } })
-      .to(params, { circleOffset: 706.07 })
-      .to(params, { pathOffset: 0 });
-  } else {
-    tl?.clear();
-    tl = gsap
-      .timeline({ defaults: { duration: 0.3 } })
-      .to(params, { pathOffset: 286.12829 })
-      .to(params, { circleOffset: 0 });
-  }
+  if (newValue) tl.play();
+  else tl.reverse();
 });
 </script>
 
