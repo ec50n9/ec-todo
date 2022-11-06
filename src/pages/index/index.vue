@@ -62,7 +62,6 @@ import EcTabBar from "../../components/EcTabBar.vue";
 import { useThemeStore } from "../../store/ThemeStore";
 import { TabItem } from "../../components/EcTabBar.vue";
 import EcModal from "../../components/EcModal.vue";
-import EcFloatingLabel from "../../components/EcFloatingLabel.vue";
 import EcButton from "../../components/EcButton.vue";
 import EcEditText from "../../components/EcEditText.vue";
 
