@@ -33,10 +33,19 @@
         <div p-6 bg-white shadow-lg rounded-xl>
           <h1 mb-4 text-xl>添加</h1>
           <div flex flex-col gap-4>
-            <EcFloatingLabel v-model="todoData.title" place-holder="标题" />
-            <EcFloatingLabel v-model="todoData.desc" place-holder="备注" />
+            <EcEditText
+              name="title"
+              v-model="todoData.title"
+              place-holder="标题"
+            />
+            <EcEditText
+              name="desc"
+              v-model="todoData.desc"
+              place-holder="备注"
+            />
           </div>
           <div mt-4 flex justify-end gap-4>
+            <EcButton>hello</EcButton>
             <button px-4 py-2 text-gray-7 bg-gray-1 rounded-md>取消</button>
             <button px-4 py-2 text-white bg-blue-6 rounded-md>添加</button>
           </div>
@@ -54,6 +63,8 @@ import { useThemeStore } from "../../store/ThemeStore";
 import { TabItem } from "../../components/EcTabBar.vue";
 import EcModal from "../../components/EcModal.vue";
 import EcFloatingLabel from "../../components/EcFloatingLabel.vue";
+import EcButton from "../../components/EcButton.vue";
+import EcEditText from "../../components/EcEditText.vue";
 
 const themeStore = useThemeStore();
 
