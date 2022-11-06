@@ -6,7 +6,7 @@
     items-center
     gap-4
   >
-    <EcCheckBox :checked="finished" @change="handleChangeStatus" />
+    <EcCheckBox w-6 h-6 :checked="finished" @change="handleChangeStatus" />
     <p flex-grow-1>
       <span class="todo-item__title">{{ title }}</span>
     </p>
