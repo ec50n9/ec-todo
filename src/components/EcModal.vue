@@ -36,9 +36,11 @@ function handleClose(event: Event) {
 }
 .modal {
   position: absolute;
-  top: 50%;
+  bottom: 0;
+  width: 100%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
 .fade-enter-active,
