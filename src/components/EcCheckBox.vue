@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import gsap from "gsap";
-import { computed, reactive, watch } from "vue";
+import { computed, onMounted, reactive, watch } from "vue";
 
 const props = defineProps<{
   checked: boolean;
@@ -47,20 +47,26 @@ function handleClick() {
 }
 
 // 打勾动画
+const _checked = computed(() => props.checked);
+
 const params = reactive({
   circleOffset: 0,
   pathOffset: 286.12829,
 });
-const _checked = computed(() => props.checked);
+
 let tl = gsap
   .timeline({ defaults: { duration: 0.3 } })
   .to(params, { circleOffset: 706.07 })
   .to(params, { pathOffset: 0 })
   .pause();
-watch(_checked, (newValue) => {
-  if (newValue) tl.play();
+
+function update() {
+  if (props.checked) tl.play();
   else tl.reverse();
-});
+}
+
+onMounted(update);
+watch(_checked, update);
 </script>
 
 <style>
