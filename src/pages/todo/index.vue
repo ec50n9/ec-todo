@@ -9,6 +9,8 @@
         v-for="todo in todoList"
         :key="todo.title"
         :title="todo.title"
+        :finished="todo.finished"
+        @change-status="(newValue) => (todo.finished = newValue)"
       />
     </TodoList>
   </main>
