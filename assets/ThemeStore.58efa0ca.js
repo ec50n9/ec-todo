@@ -1,1 +1,0 @@
-import{q as r}from"./index.8325c6e1.js";const o=r("theme",{state:()=>({colors:{primaryColor:"#6366F1",darkPrimaryColor:"#4338CA",lightPrimaryColor:"#A5B4FC",accentColor:"#F9A8D4",dividerColor:"#D1D5DB",lightText:"#F3F4F6",lightPrimaryText:"#FFFFFF",lightSecondaryText:"#D1D5DB",darkText:"#374151",darkPrimaryText:"#111827",darkSecondaryText:"#6B7280"}})});export{o as u};
