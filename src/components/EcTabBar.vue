@@ -9,9 +9,9 @@
         selected === index ? 'tab-bar-item--active' : '',
       ]"
       @click="
-        () => {
+        (e) => {
           selected === index
-            ? tab.selectedFunc && tab.selectedFunc()
+            ? tab.selectedFunc && tab.selectedFunc(e.currentTarget as Element)
             : selectTab(index);
         }
       "
@@ -39,7 +39,7 @@ export type TabItem = {
   path: string;
   selectedIcon?: string;
   selectedText?: string;
-  selectedFunc?: () => void;
+  selectedFunc?: (ele: Element) => void;
 };
 
 type Props = {
@@ -82,7 +82,7 @@ onMounted(() => selectTab(0));
 
 <style scoped>
 .tab-bar {
-  @apply w-full py-3 list-none
+  @apply w-full py-2 list-none
           flex justify-around items-center overflow-hidden;
 
   color: v-bind("$props.textColor");
@@ -100,7 +100,7 @@ onMounted(() => selectTab(0));
 }
 
 .tab-bar-item {
-  @apply flex items-center gap-2 px-4 py-1;
+  @apply flex items-center gap-2 h-11 px-4 py-1 rounded-xl;
 }
 
 .tab-bar-item__icon {
