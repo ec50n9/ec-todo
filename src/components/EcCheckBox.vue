@@ -57,7 +57,7 @@ const params = reactive({
 let tl = gsap
   .timeline({ defaults: { duration: 0.3 } })
   .to(params, { circleOffset: 706.07 })
-  .to(params, { pathOffset: 20, ease: "back.out(2)" }, "-=0.2")
+  .to(params, { pathOffset: 20, ease: "back.out(2)" }, "-=0.1")
   .pause();
 
 function update() {
