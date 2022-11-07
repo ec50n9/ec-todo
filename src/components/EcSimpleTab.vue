@@ -37,6 +37,7 @@ const tabBar = ref<HTMLUListElement>();
 // 选中事件
 function handleChange(index: number) {
   selectedIndex.value = index;
+  emit("change", index);
   const tab = tabBar.value?.querySelectorAll(".tab-item")[index];
   if (tab) {
     const rect = tab.getBoundingClientRect();
