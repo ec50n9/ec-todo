@@ -52,6 +52,6 @@ function handleClose(event: Event) {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: scale(2, 2);
+  /* transform: scale(2, 2); */
 }
 </style>
