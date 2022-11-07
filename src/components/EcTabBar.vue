@@ -94,7 +94,7 @@ onMounted(() => selectTab(0));
 }
 
 .tab-bar-border {
-  @apply absolute left-0 h-11 rounded-xl;
+  @apply fixed left-0 h-11 rounded-xl;
 
   transform: translateX(v-bind("position.startX+'px'"));
   width: v-bind("position.width+'px'");
