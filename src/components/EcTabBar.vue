@@ -1,5 +1,5 @@
 <template>
-  <ul class="tab-bar">
+  <ul ref="tabBar" class="tab-bar">
     <div class="tab-bar-border"></div>
     <li
       v-for="(tab, index) in tabs"
@@ -62,19 +62,22 @@ const emit = defineEmits(["change"]);
 
 const selected = ref(0);
 const position = reactive({ startX: 0, width: 0 });
+const tabBar = ref<HTMLUListElement>();
 
 function selectTab(index: number) {
   selected.value = index;
   // 通知
   emit("change", index);
   // 移动背景边框
-  const tab = document.querySelectorAll(".tab-bar-item")[index];
-  const rect = tab.getBoundingClientRect();
-  gsap.to(position, {
-    startX: rect.left,
-    width: rect.width,
-    duration: 0.3,
-  });
+  const tab = tabBar.value?.querySelectorAll(".tab-bar-item")[index];
+  if (tab) {
+    const rect = tab.getBoundingClientRect();
+    gsap.to(position, {
+      startX: rect.left,
+      width: rect.width,
+      duration: 0.3,
+    });
+  }
 }
 
 onMounted(() => selectTab(0));
