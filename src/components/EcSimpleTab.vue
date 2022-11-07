@@ -40,7 +40,6 @@ function handleChange(index: number) {
   const tab = tabBar.value?.querySelectorAll(".tab-item")[index];
   if (tab) {
     const rect = tab.getBoundingClientRect();
-    console.log(rect);
     gsap.to(bgPosition, {
       width: rect.width,
       height: rect.height,
