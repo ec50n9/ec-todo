@@ -1,6 +1,6 @@
 <template>
   <ul ref="tabBar" class="tab-bar">
-    <div class="tab-bg"></div>
+    <div class="tab-bg" :style="{ backgroundColor: selectedBg }"></div>
     <li
       v-for="(tab, index) in tabs"
       :key="index"
@@ -18,9 +18,12 @@ import { onMounted, Prop, reactive, ref } from "vue";
 
 type Props = {
   tabs: string[];
+  selectedBg?: string;
 };
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  selectedBg: "#fff",
+});
 const emit = defineEmits(["change"]);
 
 const selectedIndex = ref(0);
@@ -56,10 +59,10 @@ onMounted(() => handleChange(0));
 
 <style scoped>
 .tab-bar {
-  @apply flex items-center p-1.3 bg-gray-2 rounded-xl;
+  @apply flex items-center p-1.3 bg-gray-1 rounded-xl;
 }
 .tab-bg {
-  @apply fixed left-0 bg-white rounded-lg;
+  @apply fixed left-0 bg-white rounded-lg transition-colors duration-300;
   width: v-bind("bgPosition.width+'px'");
   height: v-bind("bgPosition.height+'px'");
   transform: translateX(v-bind("bgPosition.left+'px'"));
@@ -68,6 +71,6 @@ onMounted(() => handleChange(0));
   @apply flex-1 py-1 text-gray-5 text-center transition duration-300 z-1;
 }
 .tab-item--selected {
-  @apply text-gray-9;
+  @apply text-white;
 }
 </style>

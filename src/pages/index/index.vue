@@ -29,8 +29,8 @@
     </div>
     <!-- 创建todo弹窗 -->
     <EcModal v-model:visible="createTodoModal">
-      <div w-full p-4>
-        <div p-6 bg-white shadow-lg rounded-xl>
+      <div w-full p-3>
+        <div p-6 bg-white shadow-lg rounded-2xl>
           <h1 mb-4 text-xl>添加</h1>
           <div flex flex-col gap-4 transition transition-height duration-300>
             <EcEditText
@@ -38,13 +38,22 @@
               v-model="todoData.title"
               place-holder="标题"
             />
-            <EcSimpleTab :tabs="createTodoTabs" @change="handleTodoTabChange" />
+            <EcSimpleTab
+              :selected-bg="todoColors[todoTypeValues[todoTabIndex]]"
+              :tabs="createTodoTabs"
+              @change="handleTodoTabChange"
+            />
           </div>
           <div mt-4 flex justify-end gap-4>
             <EcButton type="default" @click="createTodoModal = false"
               >取消</EcButton
             >
-            <EcButton type="primary" @click="handleAddTodo">添加</EcButton>
+            <EcButton
+              type="primary"
+              :bg-color="todoColors[todoTypeValues[todoTabIndex]]"
+              @click="handleAddTodo"
+              >添加</EcButton
+            >
           </div>
         </div>
       </div>
@@ -78,6 +87,11 @@ const todoTabIndex = ref(0);
 function handleTodoTabChange(index: number) {
   todoTabIndex.value = index;
 }
+const todoColors = {
+  todo: "#3B82F6",
+  tomato: "#EF4444",
+  potato: "#F59E0B",
+};
 
 const todoStore = useTodoStore();
 function handleAddTodo() {
@@ -89,6 +103,7 @@ function handleAddTodo() {
     duration: 0,
   });
   createTodoModal.value = false;
+  todoData.title = "";
 }
 
 // 底部栏
