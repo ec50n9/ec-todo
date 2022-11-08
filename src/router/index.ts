@@ -10,6 +10,10 @@ const routes = [
       { path: "about", component: () => import("../pages/about/index.vue") },
     ],
   },
+  {
+    path: "/clock",
+    component: () => import("../pages/clock/index.vue"),
+  },
 ];
 
 const router = createRouter({
