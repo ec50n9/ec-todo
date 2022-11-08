@@ -63,6 +63,10 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+  maxStep: {
+    type: Number,
+    default: 100,
+  },
   width: {
     type: Number,
     default: 200,
@@ -125,9 +129,11 @@ watch(rate, (newRate) => {
 });
 
 // 通知改变值
+const realStep = 1 / props.maxStep;
 function moveTo(value: number) {
   if (value <= 0 || value - rate.value > 0.25) value = 0;
   else if (value > 1 || value - rate.value < -0.25) value = 1;
+  value = Math.round(value / realStep) / props.maxStep;
   emit("update:modelValue", value);
 }
 
