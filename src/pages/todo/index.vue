@@ -8,8 +8,7 @@
       <TodoItem
         v-for="todo in todoStore.todoList"
         :key="todo.title"
-        :title="todo.title"
-        :finished="todo.finished"
+        :todo="todo"
         @change-status="(newValue) => (todo.finished = newValue)"
       />
     </TodoList>

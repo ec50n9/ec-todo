@@ -32,22 +32,19 @@
       <div w-full p-4>
         <div p-6 bg-white shadow-lg rounded-xl>
           <h1 mb-4 text-xl>添加</h1>
-          <div flex flex-col gap-4>
+          <div flex flex-col gap-4 transition transition-height duration-300>
             <EcEditText
               name="title"
               v-model="todoData.title"
               place-holder="标题"
             />
-            <EcEditText
-              name="desc"
-              v-model="todoData.desc"
-              place-holder="备注"
-            />
+            <EcSimpleTab :tabs="createTodoTabs" @change="handleTodoTabChange" />
           </div>
           <div mt-4 flex justify-end gap-4>
-            <EcButton>hello</EcButton>
-            <button px-4 py-2 text-gray-7 bg-gray-1 rounded-md>取消</button>
-            <button px-4 py-2 text-white bg-blue-6 rounded-md>添加</button>
+            <EcButton type="default" @click="createTodoModal = false"
+              >取消</EcButton
+            >
+            <EcButton type="primary" @click="handleAddTodo">添加</EcButton>
           </div>
         </div>
       </div>
@@ -64,6 +61,8 @@ import { TabItem } from "../../components/EcTabBar.vue";
 import EcModal from "../../components/EcModal.vue";
 import EcButton from "../../components/EcButton.vue";
 import EcEditText from "../../components/EcEditText.vue";
+import EcSimpleTab from "../../components/EcSimpleTab.vue";
+import { useTodoStore } from "../../store/TodoStore";
 
 const themeStore = useThemeStore();
 
@@ -72,8 +71,25 @@ const layout = ref<Element>();
 const createTodoModal = ref(false);
 const todoData = reactive({
   title: "",
-  desc: "",
 });
+const createTodoTabs = ["🍚 事件", "🍅 番茄", "🥔 土豆"];
+const todoTypeValues = ["todo", "tomato", "potato"] as const;
+const todoTabIndex = ref(0);
+function handleTodoTabChange(index: number) {
+  todoTabIndex.value = index;
+}
+
+const todoStore = useTodoStore();
+function handleAddTodo() {
+  todoStore.addTodo({
+    type: todoTypeValues[todoTabIndex.value],
+    title: todoData.title,
+    date: new Date(),
+    finished: false,
+    duration: 0,
+  });
+  createTodoModal.value = false;
+}
 
 // 底部栏
 const router = useRouter();

@@ -12,7 +12,7 @@
       ry="112.374069"
       transform="matrix(-1.153139 0 0-1.153139 150 150)"
       fill="none"
-      stroke="#3f5787"
+      :stroke="color"
       stroke-width="25"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -23,7 +23,7 @@
       d="M60.10838,136.00587q26.285447,72.269753,68.336911,72.269753t99.600026-142.775308"
       transform="matrix(1.435016 0 0 1.435026-65.839397-45.171948)"
       fill="none"
-      stroke="#3f5787"
+      :stroke="color"
       stroke-width="20"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -37,9 +37,13 @@
 import gsap from "gsap";
 import { computed, onMounted, reactive, watch } from "vue";
 
-const props = defineProps<{
+type Props = {
   checked: boolean;
-}>();
+  color?: string;
+};
+const props = withDefaults(defineProps<Props>(), {
+  color: "#3f5787",
+});
 const emit = defineEmits(["change"]);
 
 function handleClick() {
