@@ -18,17 +18,18 @@
               :fill-color="themeStore.colors.primaryColor"
               :handle-color="themeStore.colors.darkPrimaryColor"
               v-model="progress"
+              :max-step="60"
               draggable
             />
             <div
               absolute
               class="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             >
-              {{ (progress * 60).toFixed() }}分钟
+              {{ Math.round(progress * 60) }}分钟
             </div>
           </div>
           <div flex justify-center>
-            <EcButton type="primary">开始</EcButton>
+            <EcButton @click="handleStart" type="primary">开始</EcButton>
           </div>
         </div>
       </div>
@@ -42,6 +43,7 @@ import { provide, ref } from "vue";
 import EcCircleProgressBar from "../../components/EcCircleProgressBar.vue";
 import { useThemeStore } from "../../store/ThemeStore";
 import EcButton from "../../components/EcButton.vue";
+import { useRouter } from "vue-router";
 
 const themeStore = useThemeStore();
 
@@ -49,4 +51,10 @@ const themeStore = useThemeStore();
 const progress = ref(0.5);
 const clockModalVisible = ref(false);
 provide("showClockModal", () => (clockModalVisible.value = true));
+
+// 跳转到计时页面
+const router = useRouter();
+function handleStart() {
+  router.push("/clock");
+}
 </script>
