@@ -5,6 +5,7 @@
       :id="name"
       class="ec-edit-text__input"
       placeholder=" "
+      autocomplete="off"
       :value="modelValue"
       @input="
         $emit('update:modelValue', ($event.target as HTMLInputElement).value)
