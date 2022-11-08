@@ -1,0 +1,1 @@
+import{y as o}from"./index.166d2ee1.js";const s=o("todo",{persist:!0,state:()=>({todoList:[{title:"\u5403\u65E9\u9910",date:new Date,duration:100,finished:!1}]}),actions:{addTodo(t){this.todoList.push(t)}}});export{s as u};
