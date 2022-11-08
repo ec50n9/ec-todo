@@ -1,5 +1,14 @@
 <template>
-  <button px-4 py-2 rounded-md select-none :class="additionClass[type]">
+  <button
+    px-4
+    py-2
+    rounded-md
+    select-none
+    transition-colors
+    duration-300
+    :class="additionClass[type]"
+    :style="{ backgroundColor: bgColor }"
+  >
     <slot />
   </button>
 </template>
@@ -7,9 +16,11 @@
 <script setup lang="ts">
 type Props = {
   type: "default" | "primary" | "error";
+  bgColor?: string;
 };
 const props = withDefaults(defineProps<Props>(), {
   type: "default",
+  bgColor: "",
 });
 
 const additionClass = {
