@@ -16,11 +16,21 @@
     <p flex-grow-1>
       <span class="todo-item__title">{{ todo.title }}</span>
     </p>
+    <div
+      v-if="canPlay"
+      @click="handlePlayClick(todo.type)"
+      w-6
+      h-6
+      :style="{ color: todoColors[todo.type] }"
+      class="i-akar-icons-play"
+    ></div>
   </li>
 </template>
 
 <script setup lang="ts">
+import { computed, inject, ref } from "vue";
 import EcCheckBox from "../../components/EcCheckBox.vue";
+import EcModal from "../../components/EcModal.vue";
 
 const props = defineProps<{
   todo: Todo;
@@ -36,6 +46,22 @@ const todoColors = {
   tomato: "#B91C1C",
   potato: "#B45309",
 };
+
+// 计时按钮
+const showClockModal = inject<() => void>("showClockModal");
+const playFuncList = {
+  tomato: () => {
+    console.log("hello, tomato");
+    showClockModal && showClockModal();
+  },
+  potato: () => {
+    console.log("hello, potato");
+  },
+};
+const canPlay = computed(() => props.todo.type in playFuncList);
+function handlePlayClick(todoType: TodoType) {
+  playFuncList[todoType]();
+}
 </script>
 
 <style>
