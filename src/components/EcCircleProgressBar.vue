@@ -207,7 +207,7 @@ function onMouseMove(event: MouseEvent | TouchEvent) {
   // 计算角度
   const angle = getAngle({ x: centre.x, y: centre.y }, { x: curX, y: curY });
   // 设置位置
-  if (curX > centre.x) {
+  if (curX >= centre.x) {
     moveTo(0.25 + angle);
   } else {
     moveTo(0.75 + angle);
