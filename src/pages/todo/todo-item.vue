@@ -31,8 +31,8 @@
 
 <script setup lang="ts">
 import { computed, inject, ref } from "vue";
+import { useRouter } from "vue-router";
 import EcCheckBox from "../../components/EcCheckBox.vue";
-import EcModal from "../../components/EcModal.vue";
 
 const props = defineProps<{
   todo: Todo;
@@ -51,13 +51,13 @@ const todoColors = {
 
 // 计时按钮
 const showClockModal = inject<() => void>("showClockModal");
+const router = useRouter();
 const playFuncList = {
   tomato: () => {
-    console.log("hello, tomato");
     showClockModal && showClockModal();
   },
   potato: () => {
-    console.log("hello, potato");
+    router.push("/clock");
   },
 };
 const canPlay = computed(
