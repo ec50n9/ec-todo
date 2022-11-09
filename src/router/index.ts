@@ -13,6 +13,7 @@ const routes = [
   {
     path: "/clock",
     component: () => import("../pages/clock/index.vue"),
+    props: (route: any) => ({ duration: parseInt(route.query.d) }),
   },
 ];
 

@@ -16,14 +16,16 @@
     <p flex-grow-1>
       <span class="todo-item__title">{{ todo.title }}</span>
     </p>
-    <div
-      v-if="canPlay"
-      @click="handlePlayClick(todo.type)"
-      w-6
-      h-6
-      :style="{ color: todoColors[todo.type] }"
-      class="i-akar-icons-play"
-    ></div>
+    <Transition>
+      <div
+        v-if="canPlay"
+        @click="handlePlayClick(todo.type)"
+        class="play-btn i-akar-icons-play"
+        w-6
+        h-6
+        :style="{ color: todoColors[todo.type] }"
+      ></div>
+    </Transition>
   </li>
 </template>
 
@@ -58,7 +60,9 @@ const playFuncList = {
     console.log("hello, potato");
   },
 };
-const canPlay = computed(() => props.todo.type in playFuncList);
+const canPlay = computed(
+  () => props.todo.type in playFuncList && !props.todo.finished
+);
 function handlePlayClick(todoType: TodoType) {
   playFuncList[todoType]();
 }
@@ -87,5 +91,16 @@ function handlePlayClick(todoType: TodoType) {
 
 .todo-item--finished .todo-item__title::after {
   width: calc(100% + 8px);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: scale(0);
 }
 </style>

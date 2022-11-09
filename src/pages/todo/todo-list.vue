@@ -48,13 +48,13 @@ import { useRouter } from "vue-router";
 const themeStore = useThemeStore();
 
 // 时间选择弹窗
-const progress = ref(0.5);
+const progress = ref(0.41);
 const clockModalVisible = ref(false);
 provide("showClockModal", () => (clockModalVisible.value = true));
 
 // 跳转到计时页面
 const router = useRouter();
 function handleStart() {
-  router.push("/clock");
+  router.push(`/clock?d=${Math.round(progress.value * 60)}`);
 }
 </script>
