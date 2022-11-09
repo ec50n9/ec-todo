@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- <TransitionGroup name="list" tag="ul" px-5>
+      <slot></slot>
+    </TransitionGroup> -->
     <ul px-5>
       <slot></slot>
     </ul>
@@ -58,3 +61,15 @@ function handleStart() {
   router.push(`/clock?d=${Math.round(progress.value * 60)}`);
 }
 </script>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>
