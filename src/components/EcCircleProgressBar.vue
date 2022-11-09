@@ -65,7 +65,7 @@ const props = defineProps({
   },
   maxStep: {
     type: Number,
-    default: 100,
+    default: -1,
   },
   width: {
     type: Number,
@@ -133,7 +133,7 @@ const realStep = 1 / props.maxStep;
 function moveTo(value: number) {
   if (value <= 0 || value - rate.value > 0.25) value = 0;
   else if (value > 1 || value - rate.value < -0.25) value = 1;
-  value = Math.round(value / realStep) / props.maxStep;
+  if (props.maxStep > 0) value = Math.round(value / realStep) / props.maxStep;
   emit("update:modelValue", value);
 }
 
@@ -149,7 +149,9 @@ const temp = computed(() => props.modelValue);
 watch(temp, (newValue) => rateTo(newValue));
 
 // 初始化进度条
-onMounted(() => rateTo(props.modelValue));
+onMounted(() => {
+  rateTo(props.modelValue);
+});
 
 // 拖拽点相关
 let dragging = ref(false);
