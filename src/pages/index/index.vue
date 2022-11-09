@@ -95,6 +95,7 @@ const todoColors = {
 
 const todoStore = useTodoStore();
 function handleAddTodo() {
+  // TODO: 增加空字符串判断
   todoStore.addTodo({
     type: todoTypeValues[todoTabIndex.value],
     title: todoData.title,
